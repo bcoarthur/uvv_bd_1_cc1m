@@ -11,5 +11,6 @@ Com o objetivo de aprendizado e desenvolvimento, o professor Abrantes propôs um
 - Arquivos escritos com a linguagem Markdown
 - Script completo da criação do banco de dados do Elmasri no **postgreSQL**
 - Script completo da criação do banco de dados do Elmasri no **MySQL**
+- Implementação de um projeto lógico
 
 
