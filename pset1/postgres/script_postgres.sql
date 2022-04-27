@@ -4,6 +4,15 @@ psql -U postgres
 
 create user arthur superuser createdb createrole inherit login password '12345';
 
+create database uvv
+with
+owner = "arthur"
+template = template0
+encoding = 'UTF8'
+LC_COLLATE = 'pt_BR.UTF-8'
+LC_CTYPE = 'pt_BR.UTF-8'
+connection limit = -1;
+
 \c uvv arthur
 
 create schema if not exists elmasri authorization arthur;
