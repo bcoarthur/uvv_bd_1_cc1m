@@ -1,6 +1,6 @@
 use uvv;
 
--- QUESTÃO 1
+-- RELATÓRIO 1
 
 select avg(func.salario) as media_salarial,
 dep.nome_departamento
@@ -9,14 +9,14 @@ join departamento dep
 on dep.numero_departamento = func.numero_departamento
 group by dep.nome_departamento;
 
--- QUESTÃO 2
+-- RELATÓRIO 2
 
 select avg(salario) as media_salarial,
 sexo
 from funcionario
 group by sexo;
 
--- QUESTÃO 3
+-- RELATÓRIO 3
 
 select dep.nome_departamento,
 concat (func.primeiro_nome,' ',
@@ -30,7 +30,7 @@ join funcionario func
 on dep.numero_departamento = func.numero_departamento
 order by dep.nome_departamento;
 
--- QUESTÃO 4
+-- RELATÓRIO 4
 
 select concat (primeiro_nome," ",
 nome_meio," ",
@@ -52,7 +52,7 @@ cast((salario * 1.15) as decimal(10,2)) as salario_reajustado
 from funcionario
 where salario >= "35000";
 
--- QUESTÃO 5
+-- RELATÓRIO 5
 
 select dep.nome_departamento,
 gerente.primeiro_nome as gerente,
@@ -74,7 +74,7 @@ gerente.cpf = dep.cpf_gerente
 order by dep.nome_departamento asc,
 func.salario desc;
 
--- QUESTÃO 6
+-- RELATÓRIO 6
 
 select concat(func.primeiro_nome,' ',
 func.nome_meio,' ',
@@ -90,7 +90,7 @@ on func.numero_departamento = dep.numero_departamento
 join dependente depen
 on depen.cpf_funcionario = func.cpf;
 
--- QUESTÃO 7
+-- RELATÓRIO 7
 
 select distinct concat(func.primeiro_nome,' ',
 func.nome_meio,' ',
@@ -106,7 +106,7 @@ func.cpf not in
 (select depen.cpf_funcionario
 from dependente depen);
 
--- QUESTÃO 8
+-- RELATÓRIO 8
 
 select dep.nome_departamento,
 pjt.nome_projeto,
@@ -125,7 +125,7 @@ and
 func.cpf = trab.cpf_funcionario
 order by pjt.numero_projeto; 
 
--- QUESTÃO 9
+-- RELATÓRIO 9
 
 select dep.nome_departamento,
 pjt.nome_projeto,
@@ -138,7 +138,7 @@ and
 pjt.numero_projeto = trab.numero_projeto
 group by pjt.nome_projeto;
 
--- QUESTÃO 10
+-- RELATÓRIO 10
 
 select avg(func.salario) as media_salarial,
 dep.nome_departamento
