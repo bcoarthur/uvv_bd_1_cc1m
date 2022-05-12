@@ -3,7 +3,7 @@
 ### Professor: Abrantes Araújo Silva 
 ### Monitora: Suellen Miranda Amorim
 #
-Este PSet2 é baseado em pedidos de relatórios que foram gerados através de um SGBD, utilizando o banco de dados criado no PSet1, "uvv".
+Este PSet2 é baseado em relatórios que foram gerados através de um SGBD, utilizando o banco de dados criado no PSet1, "uvv".
 # Este subdiretório (pset2) contém:
 - Pedidos de relatórios enumerados de 1 a 15
 - Comandos que foram utilizados pra gerarem os relatórios
