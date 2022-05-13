@@ -1,3 +1,5 @@
+-- Usar o código abaixo inicialmente para que todo o restante seja executado com êxito
+
 use uvv;
 
 -- RELATÓRIO 1
@@ -146,4 +148,102 @@ from funcionario func
 join departamento dep
 on dep.numero_departamento = func.numero_departamento
 group by dep.nome_departamento;
+
+-- RELATÓRIO 11
+
+select concat(func.primeiro_nome,' ',
+func.nome_meio,' ',
+func.ultimo_nome) as nome_completo,
+pjt.nome_projeto,
+cast((func.salario) as decimal(10,2)) as receberá
+from funcionario func
+join projeto pjt
+join trabalha_em trab
+where func.cpf = trab.cpf_funcionario
+and
+pjt.numero_projeto = trab.numero_projeto
+group by func.primeiro_nome;
+
+-- RELATÓRIO 12
+
+select dep.nome_departamento,
+pjt.nome_projeto,
+concat(func.primeiro_nome,' ',
+func.nome_meio,' ',
+func.ultimo_nome) as nome_completo,
+trab.horas
+from funcionario func
+join departamento dep
+join projeto pjt
+join trabalha_em trab
+where func.cpf = trab.cpf_funcionario
+and
+pjt.numero_projeto = trab.numero_projeto
+and
+(trab.horas = 0 or trab.horas = null)
+group by func.primeiro_nome;
+
+-- RELATÓRIO 13
+
+select concat(func.primeiro_nome,' ',
+func.nome_meio,' ',
+func.ultimo_nome) as nome_completo,
+case when sexo = 'M' then 'masculino' when sexo = 'm' then 'masculino'
+when sexo = 'f' then 'feminino' when sexo = 'f' then 'feminino' end as sexo,
+timestampdiff(year, func.data_nascimento, now()) as idade_atual
+from funcionario func
+
+union
+
+select dep.nome_dependente,
+case when sexo = 'M' then 'masculino' when sexo = 'm' then 'masculino'
+when sexo = 'F' then 'Feminino' when sexo = 'f' then 'Feminino' end as sexo,
+timestampdiff(year, dep.data_nascimento, now()) as idade_atual
+from dependente dep 
+order by idade_atual;
+
+-- RELATÓRIO 14
+
+select dep.nome_departamento,
+count(func.numero_departamento) as quantidade_funcionarios
+from funcionario func
+join departamento dep
+where func.numero_departamento = dep.numero_departamento 
+group by dep.nome_departamento;
+
+-- RELATÓRIO 15
+
+select distinct concat(func.primeiro_nome,' ',
+func.nome_meio,' ',
+func.ultimo_nome) as nome_completo,
+dep.nome_departamento, 
+pjt.nome_projeto
+from departamento dep
+join projeto pjt
+join trabalha_em trab
+join funcionario func 
+where dep.numero_departamento = func.numero_departamento 
+and 
+pjt.numero_projeto = trab.numero_projeto 
+and
+trab.cpf_funcionario = func.cpf
+
+union
+
+select distinct concat(func.primeiro_nome,' ',
+func.nome_meio,' ',
+func.ultimo_nome) as nome_completo,
+dep.nome_departamento, 
+'sem projeto' as projeto
+from departamento dep
+join projeto pjt
+join trabalha_em trab
+join funcionario func 
+where dep.numero_departamento = func.numero_departamento 
+and 
+pjt.numero_projeto = trab.numero_projeto 
+and
+(func.cpf not in (select trab.cpf_funcionario from trabalha_em trab));
+
+
 
